@@ -42,4 +42,4 @@ jobs:
           sudo docker pull  ankit1478/paytm-project:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
-          sudo docker run -d --name web-app -p 3005:3000 ankit1478/paytm-project:latest
+          sudo docker run -d --name web-app -p 3005:443 ankit1478/paytm-project:latest
