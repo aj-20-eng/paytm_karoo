@@ -1,27 +1,21 @@
-name: Deploy to Azure
+name: Test SSH Connectivity
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:  # This allows you to manually trigger the workflow from GitHub UI
 
 jobs:
-  deploy:
+  test-ssh:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: SSH into Azure VM and deploy
+      - name: Test SSH connection
         uses: appleboy/ssh-action@master
         with:
-          host: 52.140.100.215  # Replace with your Azure VM's public IP address
-          username: admin01  # Replace with your Azure VM username
-          password: Pass123456789  # Replace with your Azure VM password
-          port: 22
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}  # Use your Azure password stored in secrets
           script: |
-            cd /path/to/your/nodejs/app
-            git pull origin main  # Pull latest changes from GitHub
-            docker-compose down   # Stop existing containers if using docker-compose
-            docker-compose up -d  # Start updated containers
+            echo "SSH connection successful!"
