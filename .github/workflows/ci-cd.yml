@@ -19,6 +19,7 @@ jobs:
           host: ${{ secrets.AZURE_SERVER_IP }}
           username: ${{ secrets.AZURE_USERNAME }}
           password: ${{ secrets.AZURE_PASSWORD }}
+          port : 22
           script: |
             cd /path/to/your/nodejs/app
             git pull origin main  # Pull latest changes from GitHub
