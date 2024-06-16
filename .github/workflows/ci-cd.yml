@@ -1,4 +1,4 @@
-name: Deploy to Azure
+\name: Deploy to Azure
 
 on:
   push:
@@ -16,10 +16,10 @@ jobs:
       - name: SSH into Azure VM and deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.AZURE_SERVER_IP }}
-          username: ${{ secrets.AZURE_USERNAME }}
-          password: ${{ secrets.AZURE_PASSWORD }}
-          port : 22
+          host: 52.140.100.215  # Replace with your Azure VM's public IP address
+          username: admin01  # Replace with your Azure VM username
+          password: Pass123456789  # Replace with your Azure VM password
+          port: 22
           script: |
             cd /path/to/your/nodejs/app
             git pull origin main  # Pull latest changes from GitHub
