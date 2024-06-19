@@ -29,8 +29,10 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}  # Optional: if your SSH key has a passphrase
           script: |
             docker pull doklab/my-node-app:latest
             docker stop your_container_name || true
             docker rm your_container_name || true
             docker run -d -p 3000:3000 --name your_container_name doklab/my-node-app:latest
+
