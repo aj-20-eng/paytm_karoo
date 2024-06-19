@@ -18,17 +18,17 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
         
       - name: Build Docker image
-        run: docker build -t integrationninjas/nodejs-app .
+        run: docker build -t doklab/nodejs-app:latest .
         
       - name: Publish image to Docker Hub
-        run: docker push integrationninjas/nodejs-app:latest
+        run: docker push doklab/nodejs-app:latest
         
   deploy:
     needs: build
     runs-on: [self-hosted, shrun]
     steps:
       - name: Pull image from Docker Hub
-        run: docker pull integrationninjas/nodejs-app:latest
+        run: docker pull doklab/nodejs-app:latest
         
       - name: Delete old container
         run: |
@@ -37,4 +37,4 @@ jobs:
           fi
         
       - name: Run Docker container
-        run: docker run -d -p 5000:5000 --name nodejs-app-container integrationninjas/nodejs-app:latest
+        run: docker run -d -p 5000:5000 --name nodejs-app-container doklab/nodejs-app:latestt
