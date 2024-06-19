@@ -23,18 +23,18 @@ jobs:
       - name: Publish image to Docker Hub
         run: docker push doklab/nodejs-app:latest
         
-  deploy:
-    needs: build
-    runs-on: [self-hosted, shrun]
-    steps:
-      - name: Pull image from Docker Hub
-        run: docker pull doklab/nodejs-app:latest
-        
-      - name: Delete old container
-        run: |
-          if [ $(docker ps -q -f name=nodejs-app-container) ]; then
-            docker rm -f nodejs-app-container
-          fi
-        
-      - name: Run Docker container
-        run: docker run -d -p 5000:5000 --name nodejs-app-container doklab/nodejs-app:latestt
+#  deploy:
+#    needs: build
+#    runs-on: [self-hosted, shrun]
+#    steps:
+#      - name: Pull image from Docker Hub
+#        run: docker pull doklab/nodejs-app:latest
+#        
+#      - name: Delete old container
+#        run: |
+#          if [ $(docker ps -q -f name=nodejs-app-container) ]; then
+#            docker rm -f nodejs-app-container
+#          fi
+#        
+#      - name: Run Docker container
+#        run: docker run -d -p 5000:5000 --name nodejs-app-container doklab/nodejs-app:latest
